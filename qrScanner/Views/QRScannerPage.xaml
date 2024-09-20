@@ -4,19 +4,23 @@
              x:Class="qrScanner.Views.QRScannerPage"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
 
-             Title="QRScannerPage">
+             Title="Lector QR">
 
     
 
-     <StackLayout Padding="10">
-       
-
-         <zxing:CameraBarcodeReaderView x:Name="barcodeReader"
-                                           WidthRequest="300" HeightRequest="300"
-                IsDetecting="True" IsTorchOn="False" BarcodesDetected="OnBarcodesDetected" />
-
+<StackLayout Padding="10">
         
-        <ListView ItemsSource="{Binding QRCodeHistory}">
+        <!-- Cámara QR en la primera fila -->
+        <zxing:CameraBarcodeReaderView x:Name="barcodeReader"
+                                       WidthRequest="300" HeightRequest="300"
+                                       IsDetecting="True" IsTorchOn="False" 
+                                       BarcodesDetected="OnBarcodesDetected"
+                                      />
+
+        <!-- Separador entre la cámara y la lista -->
+
+        <!-- Lista de historial en la tercera fila -->
+        <ListView ItemsSource="{Binding QRCodeHistory}" Margin="0,60">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Code}" Detail="{Binding DateScanned}">
@@ -30,6 +34,5 @@
             </ListView.ItemTemplate>
         </ListView>
 
-    </StackLayout>
-    
+    </StackLayout>    
 </ContentPage>
